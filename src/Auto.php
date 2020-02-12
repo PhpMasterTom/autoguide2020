@@ -21,16 +21,16 @@ class Auto {
 	 *   en utilisant le nom de la balise donnée en paramètre
 	 * - Si une $balise n'est pas fournie, on retourne le titre seulement. ex.: "Ferrari Focus"
 	 * @param string $nomMarque - La marque de voiture
-	 * @param string $nomModele - Le modele de voiture
+	 * @param string $nomModele - Le modele de voiture Valeur par défaut : ""
 	 * @param string $balise - Le nom de la balise devant envelopper le titre. Valeur par défaut : ""
 	 * @return string - Le titre mis en forme
 	*/
 	static public function titre($nomMarque, $nomModele="", $balise="") {
-		$resultat = $nomMarque." ".$nomModele;
-		if ($nomModele) {
-			$resultat = $nomMarque." ".$nomModele;
+		$resultat = $nomMarque;
+		if ($nomModele) { // !=
+			$resultat .= " ".$nomModele;
 		}
-		if ($balise != "") {
+		if ($balise != "") { // !=
 			$resultat = '<'.$balise.'>'.$resultat.'</'.$balise.'>';
 		}
 		return $resultat;
@@ -44,7 +44,14 @@ class Auto {
 	 * @param string $nomModele - Le modele à rechercher dans la marque
 	 * @return array - Le array du modele ou false
 	 */
-
+	static public function trouverModele($autos, $nomMarque, $nomModele){
+		if(!(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]))){
+			return false;
+		}
+		
+		$resultat = $autos[$nomMarque][$nomModele];
+		return $resultat;
+	}
 
 	/** Méthode "ariane" qui retourne le HTML du fil d'Ariane se trouvant DANS le div "menu"
 	 * Notes :
@@ -54,6 +61,16 @@ class Auto {
 	 * @param string $nomModele - Le modele de voiture. Valeur par défaut : "".
 	 * @return string - Le HTML du fil d'Ariane
 	 */
+	static public function ariane($nomMarque="", $nomModele=""){
+		if(isset($autos[$nomMarque])){
+
+		}
+		if(isset($autos[$nomMarque][$nomModele])){
+			
+		}
+		//(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]))? $resultat = isset($autos[$nomMarque]).' '. isset($autos[$nomMarque][$nomModele] : $resultat = 'Accueil';
+		return $resultat;
+	}
 
 	 
 	/** Méthode "lien" qui retourne le code HTML d'un lien retrouvé dans la page index
