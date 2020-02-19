@@ -16,8 +16,9 @@ include_once("../src/donnees.inc.php");
 /*LIGNE DE TEST*/
 //echo Auto::titre('Ford', 'Fiesta', 'strong');
 
-var_dump(Auto::trouverModele($voitures,'Ford','Fiesta'));
-var_dump(Auto::trouverModele($voitures,'F','Fiesta'));
+//var_dump(Auto::trouverModele($voitures,'Ford','Fiesta'));
+//var_dump(Auto::trouverModele($voitures,'F','Fiesta'));
 var_dump(Auto::trouverModele($voitures,'Ford','Fita'));
+//var_dump(Auto::listesMarques())
 
 // ... CONTINUER ...

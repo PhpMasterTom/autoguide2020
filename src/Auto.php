@@ -106,7 +106,7 @@ class Auto {
 	 * @return string - Le HTML de la balise <img>
 	 */
 	static function image($nomMarque, $nomModele, $class = "voiture"){
-		return '<img src="images/voitures/'.$nomMarque.'_'.$nomModele.'.jpg" class="'.$class.'" alt="'.$nomMarque.' '.$nomModele.'" title="'.title($nomModele, $nomMarque,'strong').'" />'
+		return '<img src="images/voitures/'.$nomMarque.'_'.$nomModele.'.jpg" class="'.$class.'" alt="'.$nomMarque.' '.$nomModele.'" title="'.title($nomModele, $nomMarque,'strong').'" />';
 	}
 
 
@@ -129,38 +129,19 @@ class Auto {
 	 */
 	static public function listeMarques($autos){
 		$resultat = '';
-		$resultat = '<ul class="listeMarques">';
-		$resultat = '<li><a href="marque.php?nomMarque=Ford">Ford</a>';
-		$resultat = '<ul class="listeModeles">';
-		$resultat = '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Fiesta"><img class="tb"';
-		$resultat = 'src="images/voitures/ford_fiesta_tb.jpg" alt="Ford Fiesta"';
-		$resultat = 'title="Ford Fiesta" /><span>Fiesta</span></a></li>';
-		$resultat = '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Focus"><img class="tb"';
-		$resultat = 'src="images/voitures/ford_focus_tb.jpg" alt="Ford Focus"';
-		$resultat = 'title="Ford Focus" /><span>Focus</span></a></li>';
-		$resultat = '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Fusion"><img class="tb"';
-		$resultat = 'src="images/voitures/ford_fusion_tb.jpg" alt="Ford Fusion"';
-		$resultat = 'title="Ford Fusion" /><span>Fusion</span></a></li>';
-		$resultat = '</ul>';
-		$resultat = '</li>';
-		$resultat = '<li><a href="marque.php?nomMarque=Nissan">Nissan</a>';
-		$resultat = '<ul class="listeModeles">';
-		$resultat = '<li><a href="modele.php?nomMarque=Nissan&amp;nomModele=Versa"><img class="tb"';
-		$resultat = 'src="images/voitures/nissan_versa_tb.jpg" alt="Nissan Versa"';
-		$resultat = 'title="Nissan Versa" /><span>Versa</span></a></li>';
-		$resultat = '<li><a href="modele.php?nomMarque=Nissan&amp;nomModele=Altima"><img class="tb"';
-		$resultat = 'src="images/voitures/nissan_altima_tb.jpg" alt="Nissan Altima"';
-		$resultat = 'title="Nissan Altima" /><span>Altima</span></a></li>';
-		$resultat = '</ul>';
-		$resultat = '</li>';
-		$resultat = '<li><a href="marque.php?nomMarque=Ferrari">Ferrari</a>';
-		$resultat = '<ul class="listeModeles">';
-		$resultat = '<li><a href="modele.php?nomMarque=Ferrari&amp;nomModele=California"><img class="tb"';
-		$resultat = 'src="images/voitures/ferrari_california_tb.jpg" alt="Ferrari California"';
-		$resultat = 'title="Ferrari California" /><span>California</span></a></li>';
-		$resultat = '</ul>';
-		$resultat = '</li>';
-		$resultat = '</ul>';
+		$resultat .= '<ul class="listeMarques">';
+		foreach($auto as $idAuto => $nomAuto){
+			$resultat .= '<li><a href="marque.php?nomMarque='.$nomAuto.'">'.$nomAuto.'</a>';
+			$resultat .= '<ul class="listeModeles">';
+			foreach($auto[$nomAuto] as $idModeleAuto => $nomModeleAuto){
+				$resultat .= '<li><a href="modele.php?nomMarque='.$nomAuto.'&amp;nomModele='.$nomModeleAuto.'"><img class="tb"';
+				$resultat .= 'src="images/voitures/'.$nomAuto.'_'.$nomModeleAuto.'_tb.jpg" alt="'.$nomAuto.' '.$nomModeleAuto.'"';
+				$resultat .= 'title="'.$nomAuto.' '.$nomModeleAuto.'" /><span>'.$nomModeleAuto.'</span></a></li>';
+			}
+			$resultat .= '</ul>';
+			$resultat .= '</li>';
+		}
+		$resultat .= '</ul>';
 		return $resultat; // PAS FINI
 	}
 
@@ -174,16 +155,13 @@ class Auto {
 	static public function listeModeles($nomMarque, $autosMarque){
 		$resultat = '';
 		$resultat .= '<ul class="listeModeles">';
-		$resultat .= '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Fiesta"><img class="tb"';
-		$resultat .= 'src="images/voitures/ford_fiesta_tb.jpg" alt="Ford Fiesta"';
-		$resultat .= 'title="Ford Fiesta" /><span>Fiesta</span></a></li>';
-		$resultat .= '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Focus"><img class="tb"';
-		$resultat .= 'src="images/voitures/ford_focus_tb.jpg" alt="Ford Focus"';
-		$resultat .= 'title="Ford Focus" /><span>Focus</span></a></li>';
-		$resultat .= '<li><a href="modele.php?nomMarque=Ford&amp;nomModele=Fusion"><img class="tb"';
-		$resultat .= 'src="images/voitures/ford_fusion_tb.jpg" alt="Ford Fusion"';
-		$resultat .= 'title="Ford Fusion" /><span>Fusion</span></a></li>';
+		foreach($autosMarque as $idMarque => $nomMarque){
+			$resultat .= '<li><a href="modele.php?nomMarque='.$autosMarque.'&amp;nomModele='.$nomMarque.'"><img class="tb"';
+			$resultat .= 'src="images/voitures/'.$autosMarque.'_'.$nomMarque.'_tb.jpg" alt="'.$autosMarque.' '.$nomMarque.'"';
+			$resultat .= 'title="'.$autosMarque.' '.$nomMarque.'" /><span>'.$nomMarque.'</span></a></li>';	
+		}
 		$resultat .= '</ul>';
+		return $resultat;
 	}
 	
 
@@ -195,11 +173,11 @@ class Auto {
 	 * @param string - Le HTML du tr
 	 */
 	static public function ligne($etiquette, $contenu){
-		$resultat = '':
-		$resultat = '<tr>':
-		$resultat = '<td class="etiquette">'.$etiquette.'</td>':
-		$resultat = '<td>'.$contenu.'</td>':
-		$resultat = '</tr>':
+		$resultat = '';
+		$resultat = '<tr>';
+		$resultat = '<td class="etiquette">'.$etiquette.'</td>';
+		$resultat = '<td>'.$contenu.'</td>';
+		$resultat = '</tr>';
 
 		
 		return $resultat;
@@ -213,12 +191,12 @@ class Auto {
 	 * @param string - Le HTML du tr
 	 */
 	static public function ligne_puissance($voiture){
-		$resultat = '':
-		$resultat .= '':
-		$resultat .= '<tr>':
-		$resultat .= '<td class="etiquette">Puissance : </td>':
-		$resultat .= '<td>460 ch @ 7750 tr/min</td>':
-		$resultat .= '</tr>':
+		$resultat = '';
+		$resultat .= '';
+		$resultat .= '<tr>';
+		$resultat .= '<td class="etiquette">Puissance : </td>';
+		$resultat .= '<td>460 ch @ 7750 tr/min</td>';
+		$resultat .= '</tr>';
 		return $resultat;
 	}
 
