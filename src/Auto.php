@@ -131,29 +131,32 @@ class Auto {
 	static public function listeMarques($autos){
 		$resultat = '';
 		$resultat .= '<ul class="listeMarques">';
-		foreach($autos as $idAuto => $nomAuto){
-			$resultat .= '<li><a href="marque.php?nomMarque='.$nomAuto.'">'.$nomAuto.'</a>';
+		foreach($autos as $nomMarque => $infoMarque){
+			//print_r(key($autos));
+			//print_r(key($nomAuto));
+			$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a>';
 			$resultat .= '<ul class="listeModeles">';
-			
-			foreach($autos[$nomAuto] as $idModeleAuto => $nomModeleAuto){ //function listeModele($idAuto, $nomAuto);
-				$resultat .= '<li><a href="modele.php?nomMarque='.$nomAuto.'&amp;nomModele='.$nomModeleAuto.'"><img class="tb"';
-				$resultat .= 'src="images/voitures/'.$nomAuto.'_'.$nomModeleAuto.'_tb.jpg" alt="'.$nomAuto.' '.$nomModeleAuto.'"';
-				$resultat .= 'title="'.$nomAuto.' '.$nomModeleAuto.'" /><span>'.$nomModeleAuto.'</span></a></li>';
-				listesModeles($nomAuto, $auto[$nomAuto]);
-				// <ul class="listeModeles">
-				// 	<li><a href="modele.php?nomMarque=Ferrari&amp;nomModele=California"><img class="tb"
-				// 				src="images/voitures/ferrari_california_tb.jpg" alt="Ferrari California"
-				// 				title="Ferrari California" /><span>California</span></a></li>
-				// </ul>
-			}
+			$resultat .= self::listeModeles($nomMarque,$infoMarque);
 			$resultat .= '</ul>';
 			$resultat .= '</li>';
 		}
 		$resultat .= '</ul>';
 		return $resultat; // PAS FINI
 	}
+	//listesModeles();
+	// foreach($autos[$nomAuto] as $idModeleAuto => $nomModeleAuto){ //function listeModele($idAuto, $nomAuto);
+	// 	$resultat .= '<li><a href="modele.php?nomMarque='.key($autos).'&amp;nomModele='.key($nomAuto).'"><img class="tb"';
+	// 	$resultat .= 'src="images/voitures/'.key($autos).'_'.$nomModeleAuto.'_tb.jpg" alt="'.key($nomAuto).' '.$nomModeleAuto.'"';
+	// 	$resultat .= 'title="'.key($nomAuto).' '.key($nomAuto).'" /><span>'.key($nomAuto).'</span></a></li>';
+	// 	//listesModeles($nomAuto, $auto[$nomAuto]);
+	// 	// <ul class="listeModeles">
+	// 	// 	<li><a href="modele.php?nomMarque=Ferrari&amp;nomModele=California"><img class="tb"
+	// 	// 				src="images/voitures/ferrari_california_tb.jpg" alt="Ferrari California"
+	// 	// 				title="Ferrari California" /><span>California</span></a></li>
+	// 	// </ul>
+	// }
 	//tableau = [
- //1 porte,
+		//1 porte,
  //2 char,
  //];
 
@@ -164,10 +167,11 @@ class Auto {
 	 * @return string - Le HTML du ul "listeModeles"
 	 */
 	static public function listeModeles($nomMarque, $autosMarque){
-		foreach($autosMarque as $idModele => $nomDeModele){
-			$resultat .= '<li><a href="modele.php?nomModele='.$autosModele.'&amp;nomModele='.$nomModele.'"><img class="tb"';
-			$resultat .= 'src="images/voitures/'.$autosModele.'_'.$nomDeModele.'_tb.jpg" alt="'.$autosModele.' '.$nomModele.'"';
-			$resultat .= 'title="'.$autosModele.' '.$nomDeModele.'" /><span>'.$nomDeModele.'</span></a></li>';	
+		$resultat='';
+		foreach($autosMarque as $nomModele => $infoModele){
+			$resultat.='<li><a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><img class="tb"';
+			$resultat.='src="images/voitures/'.$nomMarque.'_'.$nomModele.'_tb.jpg" alt="'.$nomMarque.' '.$nomModele.'"';
+			$resultat.='title="'.$nomMarque.' '.$nomModele.'" /><span>'.$nomModele.'</span></a></li>';
 		}
 		return $resultat;
 	}
