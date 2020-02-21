@@ -19,7 +19,8 @@ include_once("../src/donnees.inc.php");
 //var_dump(Auto::trouverModele($voitures,'Ford','Fiesta'));
 //var_dump(Auto::trouverModele($voitures,'F','Fiesta'));
 //var_dump(Auto::trouverModele($voitures,'Ford','Fita'));
-echo Auto::listeMarques($voitures);
+//echo Auto::listeMarques($voitures);
+var_dump(Auto::ligne_puissance($voitures['Ford']['Fiesta']));
 //echo $voitures['Ford'];
 //var_dump(Auto::listesMarques())
 

@@ -92,7 +92,7 @@ class Auto {
 	 */
 
 	static public function lien($nomMarque,$nomModele){
-		return 'a';
+		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'">';
 	}
 
 
@@ -186,10 +186,10 @@ class Auto {
 	 */
 	static public function ligne($etiquette, $contenu){
 		$resultat = '';
-		$resultat = '<tr>';
-		$resultat = '<td class="etiquette">'.$etiquette.'</td>';
-		$resultat = '<td>'.$contenu.'</td>';
-		$resultat = '</tr>';
+		$resultat .= '<tr>';
+		$resultat .= '<td class="etiquette">'.$etiquette.'</td>';
+		$resultat .= '<td>'.$contenu.'</td>';
+		$resultat .= '</tr>';
 
 
 		return $resultat;
@@ -203,13 +203,11 @@ class Auto {
 	 * @param string - Le HTML du tr
 	 */
 	static public function ligne_puissance($voiture){
-		ligne('puissance',$voiture['puissance']);
-		// $resultat = '';
-		// $resultat .= '';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Puissance : </td>';
-		// $resultat .= '<td>460 ch @ 7750 tr/min</td>';
-		// $resultat .= '</tr>';
+		$t_puissance = explode(':',$voiture['puissance']);
+		$resultat = '';
+		$resultat .= $t_puissance[0].' ch @ '.$t_puissance[1];
+		$resultat = self::ligne('puissance', $resultat);
+
 		return $resultat;
 	}
 
