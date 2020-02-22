@@ -21,6 +21,14 @@ include_once("../src/donnees.inc.php");
 //var_dump(Auto::trouverModele($voitures,'Ford','Fita'));
 //echo Auto::listeMarques($voitures);
 var_dump(Auto::ligne_puissance($voitures['Ford']['Fiesta']));
+//var_dump(Auto::ligne_couple($voitures['Ford']['Fiesta']));
+//var_dump(Auto::ligne_transmissions($voitures['Ford']['Fiesta']));
+//var_dump(Auto::ligne_consommation($voitures['Ford']['Fiesta']));
+//echo Auto::affichageVoiture($voitures,'Ford','Fiesta');
+//echo Auto::ariane('Ford','PAT');
+//var_dump(Auto::image('Ford','Fiesta')); 
+//echo Auto::image('Ferrari','California', 'pat');
+//echo Auto::lien('Ferrari','California');
 //echo $voitures['Ford'];
 //var_dump(Auto::listesMarques())
 
