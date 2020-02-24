@@ -91,7 +91,7 @@ class Auto {
 	 */
 
 	static public function lien($nomMarque,$nomModele){
-		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><span>'.$nomModele.'</span></a>';
+		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><span>'.$nomModele.'</span>'.self::image($nomMarque, $nomModele).'</a>';
 	}
 
 
@@ -131,8 +131,6 @@ class Auto {
 		$resultat = '';
 		$resultat .= '<ul class="listeMarques">';
 		foreach($autos as $nomMarque => $infoMarque){
-			//print_r(key($autos));
-			//print_r(key($nomAuto));
 			$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a>';
 			$resultat .= '<ul class="listeModeles">';
 			$resultat .= self::listeModeles($nomMarque,$infoMarque);
