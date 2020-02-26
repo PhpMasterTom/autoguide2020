@@ -1,5 +1,6 @@
 <?php
 /*
+
 =========================================================================
 Intégration web III - TP1
 -------------------------------------------------------------------------
@@ -15,7 +16,8 @@ Cette page affiche la liste des modèles en fonction de la marque fournie dans l
 - Si la marque ne se trouve pas dans la variable $voitures, on DOIT retourner à la page index.php
 =========================================================================
 */
-
+include "../src/Auto.php";
+include '../src/donnees.inc.php';
 
 ?>
 <!DOCTYPE html>
@@ -31,9 +33,7 @@ Cette page affiche la liste des modèles en fonction de la marque fournie dans l
 <body>
 	<div class="interface">
 		<!-- /* Inclure le header ici */ -->
-		<header>
-			<h1><a href="index.php">AutoGuide.qc</a></h1>
-		</header>
+		<?php include '../components/header.php';?>
 		<!-- /* Faire afficher le fil d'Ariane ici; */ -->
 		<nav id="ariane">
 			<ul>
@@ -48,17 +48,11 @@ Cette page affiche la liste des modèles en fonction de la marque fournie dans l
 					<h1>Ferrari</h1>
 				</header>
 				<!-- /* Faire afficher la liste de modèles ici; */ -->
-				<ul class="listeModeles">
-					<li><a href="modele.php?nomMarque=Ferrari&amp;nomModele=California"><img class="tb"
-								src="images/voitures/ferrari_california_tb.jpg" alt="Ferrari California"
-								title="Ferrari California" /><span>California</span></a></li>
-				</ul>
+				<?php echo Auto::listeModeles($_GET['nomMarque'] ?>
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
-		<footer>
-			&copy; 2020 - Travail fait dans le cadre du cours <cite>Intégration Web III</cite>
-		</footer>
+		<?php include '../components/footer.php';?>
 
 	</div>
 </body>

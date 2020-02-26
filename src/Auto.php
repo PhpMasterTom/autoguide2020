@@ -120,9 +120,9 @@ class Auto {
 		$resultat .= '<ul class="listeMarques">';
 		foreach($autos as $nomMarque => $infoMarque){
 			$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a>';
-			$resultat .= '<ul class="listeModeles">';
+			
 			$resultat .= self::listeModeles($nomMarque,$infoMarque);
-			$resultat .= '</ul>';
+
 			$resultat .= '</li>';
 		}
 		$resultat .= '</ul>';
@@ -153,11 +153,13 @@ class Auto {
 	 */
 	static public function listeModeles($nomMarque,$autosMarque){
 		$resultat = '';
+		$resultat .= '<ul class="listeModeles">';
 		foreach($autosMarque as $nomModele => $infoModele){
 			$resultat.='<li><a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><img class="tb"';
 			$resultat.='src="images/voitures/'.$nomMarque.'_'.$nomModele.'_tb.jpg" alt="'.$nomMarque.' '.$nomModele.'"';
 			$resultat.='title="'.$nomMarque.' '.$nomModele.'" /><span>'.$nomModele.'</span></a></li>';
 		}
+		$resultat .= '</ul>';
 		return $resultat;
 	}
 	
@@ -263,8 +265,7 @@ class Auto {
 	 * @param string $nomModele - Le modele à rechercher dans la marque
 	 * @param string - Le HTML du div "voiture"
 	 */
-	static public function affichageVoiture($voiture, $nomMarque, 
-	$nomModele){
+	static public function affichageVoiture($voiture, $nomMarque, $nomModele){
 		$resultat = self::image($nomMarque, $nomModele);
 		$resultat .= '<h2>Prix de base</h2>';
 		$resultat .= '<div class="prix">'.$voiture[$nomMarque][$nomModele]['prix'].'$</div>';

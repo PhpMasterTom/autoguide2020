@@ -18,6 +18,10 @@ Cette page affiche une auto en fonction de la marque et de l'adresse fournis dan
 */
 
 
+include "../src/Auto.php";
+include '../src/donnees.inc.php';
+
+
 ?><!DOCTYPE html>
 <html lang="fr">
 
@@ -31,9 +35,7 @@ Cette page affiche une auto en fonction de la marque et de l'adresse fournis dan
 <body>
 	<div class="interface">
 		<!-- /* Inclure le header ici */ -->
-		<header>
-			<h1><a href="index.php">AutoGuide.qc</a></h1>
-		</header>
+		<?php include '../components/header.php';?>
 		<!-- /* Faire afficher le fil d'Ariane ici; */ -->
 		<nav id="ariane">
 			<ul>
@@ -90,9 +92,7 @@ Cette page affiche une auto en fonction de la marque et de l'adresse fournis dan
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
-		<footer>
-			&copy; 2020 - Travail fait dans le cadre du cours <cite>Intégration Web III</cite>
-		</footer>
+		<?php include '../components/footer.php';?>
 	</div>
 </body>
 

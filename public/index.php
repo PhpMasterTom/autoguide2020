@@ -1,4 +1,8 @@
 <?php
+
+
+include "../src/Auto.php";
+include '../src/donnees.inc.php';
 /*
 =========================================================================
 Intégration web III - TP1
@@ -25,9 +29,7 @@ Cette page affiche la liste des voitures disponibles sur le site
 <body>
 	<div class="interface">
 		<!-- /* Inclure le header ici */ -->
-		<header>
-			<h1><a href="index.php">AutoGuide.qc</a></h1>
-		</header>
+		<?php include '../components/header.php';?>
 		<!-- /* Faire afficher le fil d'Ariane ici */ -->
 		<nav id="ariane">
 			<ul>
@@ -75,9 +77,7 @@ Cette page affiche la liste des voitures disponibles sur le site
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
-		<footer>
-			&copy; 2020 - Travail fait dans le cadre du cours <cite>Intégration Web III</cite>
-		</footer>
+		<?php include '../components/footer.php';?>
 	</div>
 </body>
 
