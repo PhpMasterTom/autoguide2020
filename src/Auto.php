@@ -13,6 +13,9 @@ Votre nom :
 	- Tester CHAQUE méthode individuellement en ajoutant une ligne de test dans la page test.php
 */
 class Auto {
+	static public function isItLegit($infoA,$infoB,$infoC,$infoD){
+		
+	}
 	/** Méthode "titre" qui retourne le titre d'une voiture dont la marque et le modele sont passés en paramètres.
 	 * Le résultat peut être envelopée ou non d'une balise dont le nom est passé en paramètre.
 	 * Notes:
@@ -120,9 +123,7 @@ class Auto {
 		$resultat .= '<ul class="listeMarques">';
 		foreach($autos as $nomMarque => $infoMarque){
 			$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a>';
-			
 			$resultat .= self::listeModeles($nomMarque,$infoMarque);
-
 			$resultat .= '</li>';
 		}
 		$resultat .= '</ul>';

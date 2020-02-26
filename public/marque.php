@@ -48,7 +48,7 @@ include '../src/donnees.inc.php';
 					<h1>Ferrari</h1>
 				</header>
 				<!-- /* Faire afficher la liste de modèles ici; */ -->
-				<?php echo Auto::listeModeles($_GET['nomMarque'] ?>
+				<?php echo Auto::listeModeles($_GET['nomMarque'],$voitures[$_GET['nomMarque']]); ?>
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
