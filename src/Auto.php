@@ -13,23 +13,6 @@ Votre nom :
 	- Tester CHAQUE méthode individuellement en ajoutant une ligne de test dans la page test.php
 */
 class Auto {
-	static public function isItLegit($infoA){
-		if(isset($infoA)){
-			return $infoA;
-		}else{
-			return false;
-		}
-		// switch($infoA){
-		// 	case 'listeModeles': 
-		// 		isset($_GET['nomMarque'])? isItLegit('return', true)  : false;
-		// 	break;
-		// 	// case 'listeMarque': 
-		// 	// self::listeMarque($_GET['nomMarque'],$voitures[$_GET['nomMarque']]); 
-		// 	// //if(!(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]);
-		// 	// break;
-		// 	case 'return' : return $infoB;
-		
-	}
 	/** Méthode "titre" qui retourne le titre d'une voiture dont la marque et le modele sont passés en paramètres.
 	 * Le résultat peut être envelopée ou non d'une balise dont le nom est passé en paramètre.
 	 * Notes:
@@ -50,6 +33,7 @@ class Auto {
 		if ($balise != "") { // !=
 			$resultat = '<'.$balise.'>'.$resultat.'</'.$balise.'>';
 		}
+
 		return $resultat;
 	}
 
@@ -65,8 +49,8 @@ class Auto {
 		if(!(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]))){
 			return false;
 		}
-		
 		$resultat = $autos[$nomMarque][$nomModele];
+
 		return $resultat;
 	}
 
@@ -79,8 +63,7 @@ class Auto {
 	 * @return string - Le HTML du fil d'Ariane
 	 */
 	static public function ariane($nomMarque=false, $nomModele=""){ // NON FINI
-		$resultat = '';
-		$resultat .= '<nav id="ariane">';
+		$resultat = '<nav id="ariane">';
 		$resultat .= '<ul>';
 		if($nomMarque){
 			$resultat .= '<li><span><a href="index.php">Accueil</a></span></li>';
@@ -95,7 +78,7 @@ class Auto {
 		}
 		$resultat .= '</ul>';
 		$resultat .= '</nav>';
-		//(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]))? $resultat = isset($autos[$nomMarque]).' '. isset($autos[$nomMarque][$nomModele] : $resultat = 'Accueil';
+
 		return $resultat;
 	}
 
@@ -140,24 +123,9 @@ class Auto {
 			$resultat .= '</li>';
 		}
 		$resultat .= '</ul>';
+
 		return $resultat; // PAS FINI
 	}
-	//listesModeles();
-	// foreach($autos[$nomAuto] as $idModeleAuto => $nomModeleAuto){ //function listeModele($idAuto, $nomAuto);
-	// 	$resultat .= '<li><a href="modele.php?nomMarque='.key($autos).'&amp;nomModele='.key($nomAuto).'"><img class="tb"';
-	// 	$resultat .= 'src="images/voitures/'.key($autos).'_'.$nomModeleAuto.'_tb.jpg" alt="'.key($nomAuto).' '.$nomModeleAuto.'"';
-	// 	$resultat .= 'title="'.key($nomAuto).' '.key($nomAuto).'" /><span>'.key($nomAuto).'</span></a></li>';
-	// 	//listesModeles($nomAuto, $auto[$nomAuto]);
-	// 	// <ul class="listeModeles">
-	// 	// 	<li><a href="modele.php?nomMarque=Ferrari&amp;nomModele=California"><img class="tb"
-	// 	// 				src="images/voitures/ferrari_california_tb.jpg" alt="Ferrari California"
-	// 	// 				title="Ferrari California" /><span>California</span></a></li>
-	// 	// </ul>
-	// }
-	//tableau = [
-		//1 porte,
- //2 char,
- //];
 
 	 /** Méthode "listeModeles" qui retourne le HTML du ul "listeModeles"
 	 * contenant la liste des voitures (voir maquette, page index.php) en fonction des paramètres
@@ -172,6 +140,7 @@ class Auto {
 			$resultat.='<li>'.self::lien($nomMarque,$nomModele).'</li>';
 		}
 		$resultat .= '</ul>';
+
 		return $resultat;
 	}
 	
@@ -188,7 +157,6 @@ class Auto {
 		$resultat .= '<td class="etiquette">'.$etiquette.'</td>';
 		$resultat .= '<td>'.$contenu.'</td>';
 		$resultat .= '</tr>';
-
 
 		return $resultat;
 	}
@@ -234,7 +202,7 @@ class Auto {
 		foreach($t_transmissions as $idTransmissions => $typeTransmissions) $infoTransmissions .= '<li>'.$typeTransmissions.'</li>';
 		$infoTransmissions .= '</ul>';
 		$resultat = self::ligne('Transmissions :', $infoTransmissions);
-		
+
 		return $resultat;
 	}
 
@@ -251,19 +219,6 @@ class Auto {
 		$resultat = self::ligne('Consommation :', $infoConsommation);
 		
 		return $resultat;
-
-
-
-		// $resultat = '';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Consommation : </td>';
-		// $resultat .= '<td>';
-		// $resultat .= '<ul class="consommation">';
-		// $resultat .= '<li>Ville : 16.9 litres/100 km</li>';
-		// $resultat .= '<li>Autoroute : 10.6 litres/100 km</li>';
-		// $resultat .= '</ul>';
-		// $resultat .= '</td>';
-		// $resultat .= '</tr>';
 	}
 	
 
@@ -291,47 +246,6 @@ class Auto {
 		$resultat .= '</div>';
 		
 		return $resultat;
-		
-		// $resultat = '';
-		// $resultat .= '';
-		// $resultat .= '<div class="voiture"><img class="voiture" src="images/voitures/ferrari_california.jpg"';
-		// $resultat .= 'alt="Ferrari California" title="Ferrari California" />';
-		// $resultat .= '<h2>Prix de base</h2>';
-		// $resultat .= '<div class="prix">192000 $</div>';
-		// $resultat .= '<h2>Caractéristiques</h2>';
-		// $resultat .= '<table class="caracteristiques">';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Moteur : </td>';
-		// $resultat .= '<td>V8 4,3 litres</td>';
-		// $resultat .= '</tr>';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Puissance : </td>';
-		// $resultat .= '<td>460 ch @ 7750 tr/min</td>';
-		// $resultat .= '</tr>';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Couple : </td>';
-		// $resultat .= '<td>358 lb-pi @ 5000 tr/min</td>';
-		// $resultat .= '</tr>';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Transmissions : </td>';
-		// $resultat .= '<td>';
-		// $resultat .= '<ul class="transmissions">';
-		// $resultat .= '<li>Séquentielle</li>';
-		// $resultat .= '<li>Manuelle, 6 rapports</li>';
-		// $resultat .= '</ul>';
-		// $resultat .= '</td>';
-		// $resultat .= '</tr>';
-		// $resultat .= '<tr>';
-		// $resultat .= '<td class="etiquette">Consommation : </td>';
-		// $resultat .= '<td>';
-		// $resultat .= '<ul class="consommation">';
-		// $resultat .= '<li>Ville : 16.9 litres/100 km</li>';
-		// $resultat .= '<li>Autoroute : 10.6 litres/100 km</li>';
-		// $resultat .= '</ul>';
-		// $resultat .= '</td>';
-		// $resultat .= '</tr>';
-		// $resultat .= '</table>';
-		// $resultat .= '</div>';
 	}
 
 }
