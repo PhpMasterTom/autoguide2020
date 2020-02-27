@@ -13,7 +13,21 @@ Votre nom :
 	- Tester CHAQUE méthode individuellement en ajoutant une ligne de test dans la page test.php
 */
 class Auto {
-	static public function isItLegit($infoA,$infoB,$infoC,$infoD){
+	static public function isItLegit($infoA){
+		if(isset($infoA)){
+			return $infoA;
+		}else{
+			return false;
+		}
+		// switch($infoA){
+		// 	case 'listeModeles': 
+		// 		isset($_GET['nomMarque'])? isItLegit('return', true)  : false;
+		// 	break;
+		// 	// case 'listeMarque': 
+		// 	// self::listeMarque($_GET['nomMarque'],$voitures[$_GET['nomMarque']]); 
+		// 	// //if(!(isset($autos[$nomMarque]) && isset($autos[$nomMarque][$nomModele]);
+		// 	// break;
+		// 	case 'return' : return $infoB;
 		
 	}
 	/** Méthode "titre" qui retourne le titre d'une voiture dont la marque et le modele sont passés en paramètres.
@@ -219,8 +233,7 @@ class Auto {
 	 */
 	static public function ligne_transmissions($voiture){
 		$t_transmissions = $voiture['transmissions'];
-		$infoTransmissions = '';
-		$infoTransmissions .= '<ul class="transmissions">';
+		$infoTransmissions = '<ul class="transmissions">';
 		foreach($t_transmissions as $idTransmissions => $typeTransmissions) $infoTransmissions .= '<li>'.$typeTransmissions.'</li>';
 		$infoTransmissions .= '</ul>';
 		$resultat = self::ligne('Transmissions :', $infoTransmissions);
@@ -235,8 +248,7 @@ class Auto {
 	 */
 	static public function ligne_consommation($voiture){
 		$t_consommation = $voiture['consommation'];
-		$infoConsommation = '';
-		$infoConsommation .= '<ul class="consommation">';
+		$infoConsommation = '<ul class="consommation">';
 		foreach($t_consommation as $idconsommation => $typeconsommation) $infoconsommation .= '<li>'.$typeconsommation.'</li>';
 		$infoConsommation .= '</ul>';
 		$resultat = self::ligne('Consommation :', $infoConsommation);

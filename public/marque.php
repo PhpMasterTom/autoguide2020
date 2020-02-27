@@ -48,7 +48,21 @@ include '../src/donnees.inc.php';
 					<h1>Ferrari</h1>
 				</header>
 				<!-- /* Faire afficher la liste de modèles ici; */ -->
-				<?php echo Auto::listeModeles($_GET['nomMarque'],$voitures[$_GET['nomMarque']]); ?>
+				<?php 
+				$nomMarque = $_GET['nomMarque'];
+				if(isset($voitures[$nomMarque])){
+					echo Auto::listeModeles($nomMarque,$voitures[$nomMarque]);
+				}else{
+					header("location:index.php");
+				}
+if (isset($_GET['recherche'])){
+  $recherche = $_GET['recherche'];
+}else{
+  $recherche = '';
+}
+*/
+			
+					?>
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
