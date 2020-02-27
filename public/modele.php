@@ -20,7 +20,9 @@ Cette page affiche une auto en fonction de la marque et de l'adresse fournis dan
 
 include "../src/Auto.php";
 include '../src/donnees.inc.php';
-
+$nomMarque = $_GET['nomMarque'];
+$nomModele = $_GET['nomModele'];
+if(!Auto::trouverModele($voitures, $nomMarque,$nomModele)) header("location:index.php");
 
 ?><!DOCTYPE html>
 <html lang="fr">
@@ -29,7 +31,7 @@ include '../src/donnees.inc.php';
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="css/autoguide.css" />
 	<!-- /* Faire afficher le titre de la voiture ici (dans un title); */ -->
-	<title>Ferrari California</title>
+	<?php echo Auto::titre($nomMarque,$nomModele,"title")?>
 </head>
 
 <body>
@@ -37,62 +39,20 @@ include '../src/donnees.inc.php';
 		<!-- /* Inclure le header ici */ -->
 		<?php include '../components/header.php';?>
 		<!-- /* Faire afficher le fil d'Ariane ici; */ -->
-		<nav id="ariane">
-			<ul>
-				<li><a href="index.php">Accueil</a></li>
-				<li><a href="marque.php?nomMarque=Ferrari">Ferrari</a></li>
-				<li><span>California</span></li>
-			</ul>
-		</nav>
+		<?php echo Auto::ariane($nomMarque,$nomModele)?>
 		<section class="body">
 			<article>
 				<header>
 					<!-- /* Faire afficher le titre de la voiture ici (dans un h1); */ -->
-					<h1>Ferrari California</h1>
+					<h1><?php echo Auto::titre($nomMarque,$nomModele,"")?></h1>
 				</header>
 				<!-- /* Faire afficher la voiture ici; */ -->
-				<div class="voiture"><img class="voiture" src="images/voitures/ferrari_california.jpg"
-						alt="Ferrari California" title="Ferrari California" />
-					<h2>Prix de base</h2>
-					<div class="prix">192000 $</div>
-					<h2>Caractéristiques</h2>
-					<table class="caracteristiques">
-						<tr>
-							<td class="etiquette">Moteur : </td>
-							<td>V8 4,3 litres</td>
-						</tr>
-						<tr>
-							<td class="etiquette">Puissance : </td>
-							<td>460 ch @ 7750 tr/min</td>
-						</tr>
-						<tr>
-							<td class="etiquette">Couple : </td>
-							<td>358 lb-pi @ 5000 tr/min</td>
-						</tr>
-						<tr>
-							<td class="etiquette">Transmissions : </td>
-							<td>
-								<ul class="transmissions">
-									<li>Séquentielle</li>
-									<li>Manuelle, 6 rapports</li>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<td class="etiquette">Consommation : </td>
-							<td>
-								<ul class="consommation">
-									<li>Ville : 16.9 litres/100 km</li>
-									<li>Autoroute : 10.6 litres/100 km</li>
-								</ul>
-							</td>
-						</tr>
-					</table>
-				</div>
+				<?php 
+					echo Auto::affichageVoiture($voitures,$nomMarque,$nomModele);?>
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
-		<?php include '../components/footer.php';?>
+		<!-- <?php include '../components/footer.php';?> -->
 	</div>
 </body>
 

@@ -108,7 +108,7 @@ class Auto {
 	 */
 
 	static public function lien($nomMarque,$nomModele){
-		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><span>'.$nomModele.'</span>'.self::image($nomMarque, $nomModele).'</a>';
+		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><span>'.$nomModele.'</span>'.self::image($nomMarque, $nomModele,'tb').'</a>';
 	}
 
 
@@ -123,7 +123,7 @@ class Auto {
 	 * @return string - Le HTML de la balise <img>
 	 */
 	static function image($nomMarque, $nomModele, $class = "voiture"){
-		return '<img src="images/voitures/'.$nomMarque.'_'.$nomModele.''.($class != "voiture"? '_tb' : '').'.jpg" class="'.$class.'" alt="'.$nomMarque.' '.$nomModele.'" title="'.self::titre($nomModele, $nomMarque,'strong').'" />';
+		return '<img src="images/voitures/'.$nomMarque.'_'.$nomModele.''.($class != "voiture"? '_tb' : '').'.jpg" class="'.$class.'" alt="'.self::titre($nomModele, $nomMarque,'').'" title="'.self::titre($nomModele, $nomMarque,'strong').'" />';
 	}
 
 
@@ -133,8 +133,7 @@ class Auto {
 	 * @return string - Le HTML du div "listeMarques"
 	 */
 	static public function listeMarques($autos){
-		$resultat = '';
-		$resultat .= '<ul class="listeMarques">';
+		$resultat = '<ul class="listeMarques">';
 		foreach($autos as $nomMarque => $infoMarque){
 			$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a>';
 			$resultat .= self::listeModeles($nomMarque,$infoMarque);
@@ -170,9 +169,7 @@ class Auto {
 		$resultat = '';
 		$resultat .= '<ul class="listeModeles">';
 		foreach($autosMarque as $nomModele => $infoModele){
-			$resultat.='<li><a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><img class="tb"';
-			$resultat.='src="images/voitures/'.$nomMarque.'_'.$nomModele.'_tb.jpg" alt="'.$nomMarque.' '.$nomModele.'"';
-			$resultat.='title="'.$nomMarque.' '.$nomModele.'" /><span>'.$nomModele.'</span></a></li>';
+			$resultat.='<li>'.self::lien($nomMarque,$nomModele).'</li>';
 		}
 		$resultat .= '</ul>';
 		return $resultat;
@@ -188,9 +185,9 @@ class Auto {
 	 */
 	static public function ligne($etiquette, $contenu){
 		$resultat = '<tr>';
-		$resultat .= '<td class="etiquette">'.$etiquette.'</td><br>';
+		$resultat .= '<td class="etiquette">'.$etiquette.'</td>';
 		$resultat .= '<td>'.$contenu.'</td>';
-		$resultat .= '</tr><br>';
+		$resultat .= '</tr>';
 
 
 		return $resultat;
@@ -249,7 +246,7 @@ class Auto {
 	static public function ligne_consommation($voiture){
 		$t_consommation = $voiture['consommation'];
 		$infoConsommation = '<ul class="consommation">';
-		foreach($t_consommation as $idconsommation => $typeconsommation) $infoconsommation .= '<li>'.$typeconsommation.'</li>';
+		foreach($t_consommation as $lieu => $typeConsommation) $infoConsommation .= '<li>'.$lieu.' : '.$typeConsommation.'</li>';
 		$infoConsommation .= '</ul>';
 		$resultat = self::ligne('Consommation :', $infoConsommation);
 		
@@ -279,15 +276,19 @@ class Auto {
 	 * @param string - Le HTML du div "voiture"
 	 */
 	static public function affichageVoiture($voiture, $nomMarque, $nomModele){
-		$resultat = self::image($nomMarque, $nomModele);
+		$resultat = '<div class="voiture">';
+		$resultat .= self::image($nomMarque, $nomModele);
 		$resultat .= '<h2>Prix de base</h2>';
 		$resultat .= '<div class="prix">'.$voiture[$nomMarque][$nomModele]['prix'].'$</div>';
 		$resultat .= '<h2>Caractéristiques</h2>';
+		$resultat .= '<table class="caracteristiques">';
 		$resultat .= self::ligne('Moteur : ',$voiture[$nomMarque][$nomModele]['moteur']);
 		$resultat .= self::ligne_puissance($voiture[$nomMarque][$nomModele]);
 		$resultat .= self::ligne_couple($voiture[$nomMarque][$nomModele]);
 		$resultat .= self::ligne_transmissions($voiture[$nomMarque][$nomModele]);
 		$resultat .= self::ligne_consommation($voiture[$nomMarque][$nomModele]);
+		$resultat .= '</table>';
+		$resultat .= '</div>';
 		
 		return $resultat;
 		

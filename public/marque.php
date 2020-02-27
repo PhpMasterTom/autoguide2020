@@ -16,8 +16,10 @@ Cette page affiche la liste des modèles en fonction de la marque fournie dans l
 - Si la marque ne se trouve pas dans la variable $voitures, on DOIT retourner à la page index.php
 =========================================================================
 */
-include "../src/Auto.php";
 include '../src/donnees.inc.php';
+include "../src/Auto.php";
+$nomMarque = $_GET['nomMarque'];
+if(!isset($voitures[$nomMarque])) header("location:index.php");
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ include '../src/donnees.inc.php';
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="css/autoguide.css" />
 	<!-- /* Faire afficher le nom de la marque dans le title; */ -->
-	<title>Ford</title>
+	<?php echo Auto::titre($nomMarque,"","title")?>
 </head>
 
 <body>
@@ -35,34 +37,15 @@ include '../src/donnees.inc.php';
 		<!-- /* Inclure le header ici */ -->
 		<?php include '../components/header.php';?>
 		<!-- /* Faire afficher le fil d'Ariane ici; */ -->
-		<nav id="ariane">
-			<ul>
-				<li><a href="index.php">Accueil</a></li>
-				<li><span>Ferrari </span></li>
-			</ul>
-		</nav>
+		<?php echo Auto::ariane($nomMarque)?>
 		<section class="body">
 			<article>
 				<header>
 					<!-- /* Faire afficher le nom de la marque dans le h1; */ -->
-					<h1>Ferrari</h1>
+					<h1><?php echo Auto::titre($nomMarque)?></h1>
 				</header>
 				<!-- /* Faire afficher la liste de modèles ici; */ -->
-				<?php 
-				$nomMarque = $_GET['nomMarque'];
-				if(isset($voitures[$nomMarque])){
-					echo Auto::listeModeles($nomMarque,$voitures[$nomMarque]);
-				}else{
-					header("location:index.php");
-				}
-if (isset($_GET['recherche'])){
-  $recherche = $_GET['recherche'];
-}else{
-  $recherche = '';
-}
-*/
-			
-					?>
+				<?php echo Auto::listeModeles($nomMarque,$voitures[$nomMarque]);?>
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
