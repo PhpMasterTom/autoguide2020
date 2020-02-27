@@ -52,7 +52,7 @@ if(!Auto::trouverModele($voitures, $nomMarque,$nomModele)) header("location:inde
 			</article>
 		</section>
 		<!-- /* Inclure le footer ici */ -->
-		<!-- <?php include '../components/footer.php';?> -->
+		<?php include '../components/footer.php';?>
 	</div>
 </body>
 

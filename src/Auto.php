@@ -68,7 +68,7 @@ class Auto {
 		if($nomMarque){
 			$resultat .= '<li><span><a href="index.php">Accueil</a></span></li>';
 			if($nomModele) {
-				$resultat .= '<li><span><a href="marque.php">'.$nomMarque.'</a></span></li>';
+				$resultat .= '<li><a href="marque.php?nomMarque='.$nomMarque.'">'.$nomMarque.'</a></span></li>';
 				$resultat .= '<li><span>'.$nomModele.'</span></li>';
 			}else{
 				$resultat .='<li><span>'.$nomMarque.'</span></li>';
@@ -91,7 +91,7 @@ class Auto {
 	 */
 
 	static public function lien($nomMarque,$nomModele){
-		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'"><span>'.$nomModele.'</span>'.self::image($nomMarque, $nomModele,'tb').'</a>';
+		return '<a href="modele.php?nomMarque='.$nomMarque.'&amp;nomModele='.$nomModele.'">'.self::image($nomMarque, $nomModele,'tb').'<span>'.$nomModele.'</span></a>';
 	}
 
 
@@ -170,7 +170,7 @@ class Auto {
 	 */
 	static public function ligne_puissance($voiture){
 		$t_puissance = explode(':',$voiture['puissance']);
-		$resultat = $t_puissance[0].' ch @ '.$t_puissance[1];
+		$resultat = $t_puissance[0].' ch @ '.$t_puissance[1].' tr/min';
 		$resultat = self::ligne('Puissance :', $resultat);
 
 		return $resultat;
@@ -214,7 +214,7 @@ class Auto {
 	static public function ligne_consommation($voiture){
 		$t_consommation = $voiture['consommation'];
 		$infoConsommation = '<ul class="consommation">';
-		foreach($t_consommation as $lieu => $typeConsommation) $infoConsommation .= '<li>'.ucfirst($lieu).' : '.$typeConsommation.'</li>';
+			foreach($t_consommation as $lieu => $typeConsommation) $infoConsommation .= '<li>'.ucfirst($lieu).' : '.$typeConsommation.' litres/100 km</li>';
 		$infoConsommation .= '</ul>';
 		$resultat = self::ligne('Consommation :', $infoConsommation);
 		
@@ -234,7 +234,7 @@ class Auto {
 		$resultat = '<div class="voiture">';
 		$resultat .= self::image($nomMarque, $nomModele);
 		$resultat .= '<h2>Prix de base</h2>';
-		$resultat .= '<div class="prix">'.$voiture[$nomMarque][$nomModele]['prix'].'$</div>';
+		$resultat .= '<div class="prix">'.$voiture[$nomMarque][$nomModele]['prix'].' $</div>';
 		$resultat .= '<h2>Caractéristiques</h2>';
 		$resultat .= '<table class="caracteristiques">';
 		$resultat .= self::ligne('Moteur : ',$voiture[$nomMarque][$nomModele]['moteur']);
