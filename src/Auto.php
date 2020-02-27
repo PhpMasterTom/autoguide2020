@@ -214,7 +214,7 @@ class Auto {
 	static public function ligne_consommation($voiture){
 		$t_consommation = $voiture['consommation'];
 		$infoConsommation = '<ul class="consommation">';
-		foreach($t_consommation as $lieu => $typeConsommation) $infoConsommation .= '<li>'.$lieu.' : '.$typeConsommation.'</li>';
+		foreach($t_consommation as $lieu => $typeConsommation) $infoConsommation .= '<li>'.ucfirst($lieu).' : '.$typeConsommation.'</li>';
 		$infoConsommation .= '</ul>';
 		$resultat = self::ligne('Consommation :', $infoConsommation);
 		
